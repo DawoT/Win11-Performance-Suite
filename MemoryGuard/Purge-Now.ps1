@@ -1,7 +1,8 @@
 <#
 .SYNOPSIS
     Singular Purge (Stateless)
-    Execute, Clean, and Exit. Ideal for being called by Batch.
+    Execute, Clean, and Exit.
+    Now supports MULTIPLE aggressive targets.
 #>
 
 $ErrorActionPreference = "SilentlyContinue"
@@ -20,13 +21,29 @@ if (-not ([System.Management.Automation.PSTypeName]'SysMem').Type) {
     Add-Type -TypeDefinition $Source
 }
 
-# QUICK LOGIC
-$ls = Get-Process -Name "language_server_windows_x64"
-if ($ls) {
-    foreach ($p in $ls) {
-        if (($p.WorkingSet64 / 1MB) -gt 350) {
-            # Write-Host "Purging PID $($p.Id)..."
-            [SysMem]::EmptyWorkingSet($p.Handle) | Out-Null
+# TARGET LIST (Processes known to eat RAM)
+# Add your targets here. Regex supported.
+$Targets = @(
+    "language_server_windows_x64", # Antigravity (The Main Villain)
+    "chrome",                      # Google Chrome
+    "msedge",                      # Microsoft Edge
+    "Code",                        # VS Code (Electron)
+    "Discord",                     # Discord (Electron)
+    "Slack",                       # Slack (Electron)
+    "teams",                       # MS Teams
+    "java",                        # Minecraft/Servers
+    "python"                       # AI Scripts
+)
+
+# PURGE LOOP
+foreach ($Name in $Targets) {
+    $processes = Get-Process -Name $Name -ErrorAction SilentlyContinue
+    if ($processes) {
+        foreach ($p in $processes) {
+            # Only purge if consuming > 200MB to save CPU cycles
+            if (($p.WorkingSet64 / 1MB) -gt 200) {
+               [SysMem]::EmptyWorkingSet($p.Handle) | Out-Null
+            }
         }
     }
 }
