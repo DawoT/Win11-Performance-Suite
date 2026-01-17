@@ -6,7 +6,7 @@
 
 $CheckInterval = 2
 
-# CÓDIGO NATIVO
+# NATIVE CODE
 $Source = @"
 using System;
 using System.Runtime.InteropServices;
@@ -17,10 +17,10 @@ public class SysMem {
     public static extern int EmptyWorkingSet(IntPtr hwProc);
 }
 "@
-# Silenciar output de Add-Type
+# Silencing Add-Type output
 Add-Type -TypeDefinition $Source -ErrorAction SilentlyContinue
 
-# Prioridad Alta para asegurar ejecución
+# High Priority to ensure execution
 $curr = Get-Process -Id $PID
 try { $curr.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::High } catch {}
 
@@ -29,14 +29,14 @@ while ($true) {
         $ls = Get-Process -Name "language_server_windows_x64" -ErrorAction SilentlyContinue
         if ($ls) {
              foreach ($p in $ls) {
-                # Umbral 250MB
+                # Threshold 250MB
                 if (($p.WorkingSet64 / 1MB) -gt 250) {
                      [SysMem]::EmptyWorkingSet($p.Handle) | Out-Null
                 }
              }
         }
     } catch {
-        # Ignorar errores y seguir
+        # Ignore errors and continue
     }
     
     Start-Sleep -Seconds $CheckInterval
