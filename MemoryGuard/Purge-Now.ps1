@@ -32,7 +32,10 @@ $Targets = @(
     "Slack",                       # Slack (Electron)
     "teams",                       # MS Teams
     "java",                        # Minecraft/Servers
-    "python"                       # AI Scripts
+    "python",                      # AI Scripts
+    "node",                        # Node.js
+    "bun",                         # Bun Runtime
+    "deno"                         # Deno Runtime
 )
 
 # PURGE LOOP
