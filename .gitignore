@@ -1,0 +1,21 @@
+# PowerShell/Windows
+*.swp
+*.log
+*.tmp
+*.bak
+*.psd1
+*.psm1
+*.pdb
+*.exe
+*.dll
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Custom
+*_history.txt
+debug*.txt
