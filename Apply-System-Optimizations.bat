@@ -19,19 +19,19 @@ echo ===================================================
 echo.
 
 echo [1/4] Cleaning Startup & Background...
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0Cleanup-Startup.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0System\Cleanup-Startup.ps1"
 
 echo.
 echo [2/4] Optimizing Network (TCP/IP)...
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0Optimize-Network.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0System\Optimize-Network.ps1"
 
 echo.
 echo [3/4] Optimizing Disk (TRIM/FSUtil)...
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0Optimize-IO.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0System\Optimize-IO.ps1"
 
 echo.
 echo [4/4] Optimizing UI...
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0Optimize-UI.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0System\Optimize-UI.ps1"
 
 echo.
 echo ===================================================

@@ -11,18 +11,20 @@ Originally designed to neutralize memory leaks in heavy development tools (like 
 ## 🚀 Key Features
 
 ### 🛡️ Antigravity Memory Guard (Immortal Watchdog)
-Eliminates memory leaks in long-running processes.
+Eliminates memory leaks in long-running processes. Located in `MemoryGuard/`.
 - **Architecture**: Stateless Watchdog (`.bat` loop) + Surgical Purge (`.ps1`).
 - **Resilience**: Immune to crashes, shutdowns, or "optimizer" conflicts.
 - **Performance**: Keeps leaky processes (e.g., node, rust binaries) under **200MB**.
 - **Stealth**: Runs invisibly via VBScript.
 
 ### ⚡ System Unlocked
+Located in `System/`.
 - **Network**: TCP Autotuning 'Normal', CTCP Congestion Provider, Optimized DNS.
 - **I/O**: Forced SSD TRIM, Disabled Legacy NTFS overhead (8.3/LastAccess).
 - **Startup**: Neutralizes hidden background updaters (Edge, MiniTool, etc.).
 
 ### 🎮 Hardware Acceleration
+Located in `Utils/`.
 - **GPU**: Enforces "Hardware Accelerated GPU Scheduling" (HAGS).
 - **CPU**: Disables Core Parking for consistent priority handling.
 - **MSI Mode**: Enables Message Signaled Interrupts for NVIDIA GPUs (Low Latency).
@@ -31,15 +33,15 @@ Eliminates memory leaks in long-running processes.
 
 ### Option 1: Full Optimization (One-Click)
 Run `Apply-System-Optimizations.bat` as Administrator.
-> Applies Network, Disk, UI, and Startup optimizations.
+> Applies all optimizations found in the `System/` folder.
 
 ### Option 2: Install Memory Guard
-Run `Install-Immortal.ps1` with PowerShell (Admin).
+Run `MemoryGuard/Install-Immortal.ps1` with PowerShell (Admin).
 > Installs the boot-time watchdog service to prevent memory leaks permanently.
 
 ## 🛠️ Configuration
 
-You can customize the memory thresholds in `System-Memory-Manager.ps1`:
+You can customize the memory thresholds in `MemoryGuard/System-Memory-Manager.ps1`:
 
 ```powershell
 $MaxRAMPercent = 85       # Emergency cleanup threshold
